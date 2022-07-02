@@ -96,7 +96,10 @@ logging.debug("Microscope successfully attached!")
 # Create flask app
 logging.info("Creating app")
 app, labthing = create_app(
-    __name__,
+
+#    __name__, openflexure_microscope.api.app wasn't resolving....
+
+    "/var/openflexure/application/openflexure-microscope-server/openflexure_microscope/api/app",
     prefix="/api/v2",
     title=f"OpenFlexure Microscope {api_microscope.name}",
     description="Test LabThing-based API for OpenFlexure Microscope",
