@@ -15,8 +15,8 @@ from openflexure_microscope.captures import THUMBNAIL_SIZE, CaptureManager
 from openflexure_microscope.config import OpenflexureSettingsFile
 from openflexure_microscope.stage.base import BaseStage
 from openflexure_microscope.stage.mock import MissingStage
-from openflexure_microscope.stage.sanga import SangaDeltaStage, SangaStage
-from openflexure_microscope.stage.sanga import SangaStagePi
+from openflexure_microscope.stage.sangapi import SangaDeltaStage, SangaStagePi
+# from openflexure_microscope.stage.sanga import SangaStagePi
 
 try:
     from openflexure_microscope.camera.pi import PiCameraStreamer

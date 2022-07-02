@@ -5,7 +5,8 @@ from types import GeneratorType
 from typing import Optional, Tuple, Union
 
 import numpy as np
-from sangaboard import Sangaboard
+# from sangaboard import Sangaboard
+from openflexure_microscope.stage.sangaboardpi import SangaboardPi
 from typing_extensions import Literal
 
 from openflexure_microscope.stage.base import BaseStage
@@ -42,7 +43,8 @@ class SangaStage(BaseStage):
         BaseStage.__init__(self)
 
         self.port = port
-        self.board = Sangaboard(port, **kwargs)
+        # self.board = Sangaboard(port, **kwargs)
+        self.board = SangaboardPi()
 
         # Initialise backlash storage, used by property setter/getter
         self._backlash = None

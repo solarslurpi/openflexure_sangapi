@@ -1,4 +1,4 @@
 {
     "min_step_delay": 1000.0,
-    "current_pos": [0.0, 0.0, 0.0]
+    "current_position": [0.0, 0.0, 0.0]
     }

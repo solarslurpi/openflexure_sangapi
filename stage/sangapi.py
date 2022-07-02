@@ -6,7 +6,7 @@ from typing import Optional, Tuple, Union
 
 import numpy as np
 # from sangaboard import Sangaboard
-from sangaboardpi import SangaboardPi
+from openflexure_microscope.stage.sangaboardpi import SangaboardPi
 from typing_extensions import Literal
 
 from openflexure_microscope.stage.base import BaseStage
@@ -252,8 +252,8 @@ class SangaStagePi(BaseStage):
             print("Move completed, raising exception...")
             raise value  # Propagate the exception
 
-
-class SangaDeltaStage(SangaStage):
+# NOTE: not supporting delta in pi variant of sangaboard...
+class SangaDeltaStage(SangaStagePi):
     def __init__(
         self,
         port: Optional[str] = None,

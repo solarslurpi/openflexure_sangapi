@@ -16,15 +16,19 @@ class SangaboardPi(Stepper):
         self.n_motors = 3
         # x-axis stepper motor
         self.motors.append(Stepper(8, 12, 15, 11, 13))
-        # TODO: y-axis stepper motor
-        # TODO: z-axis stepper motor
+        # y-axis stepper motor
+        self.motors.append(Stepper(8, 37, 35, 33, 31))
+        # z-axis stepper motor
+        self.motors.append(Stepper(8, 40, 38, 36, 32))
         self.steps_remaining = [0 for _ in range(self.n_motors)]
         self.min_step_delay = 0
+        self.current_position = []
         try:
-            with open('sangaboardpiconfig.json') as config_file:
+            with open('/var/openflexure/application/openflexure-microscope-server/openflexure_microscope/stage/sangaboardpiconfig.json') as config_file:
                 data = json.load(config_file)
                 self._min_step_delay = data['min_step_delay']
                 self.current_position = data['current_position']
+                print(self.current_position)
         except FileNotFoundError:
             # TODO: More robust no file error handling
             pass
