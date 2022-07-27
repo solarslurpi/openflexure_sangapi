@@ -1,0 +1,169 @@
+.
+├── api
+│   ├── app.py
+│   ├── default_extensions
+│   │   ├── autofocus.py
+│   │   ├── autostorage.py
+│   │   ├── camera_stage_mapping.py
+│   │   ├── __init__.py
+│   │   ├── picamera_autocalibrate
+│   │   │   ├── extension.py
+│   │   │   ├── __init__.py
+│   │   │   ├── __pycache__
+│   │   │   │   ├── extension.cpython-37.pyc
+│   │   │   │   ├── __init__.cpython-37.pyc
+│   │   │   │   └── recalibrate_utils.cpython-37.pyc
+│   │   │   └── recalibrate_utils.py
+│   │   ├── __pycache__
+│   │   │   ├── autofocus.cpython-37.pyc
+│   │   │   ├── autostorage.cpython-37.pyc
+│   │   │   ├── camera_stage_mapping.cpython-37.pyc
+│   │   │   ├── __init__.cpython-37.pyc
+│   │   │   ├── scan.cpython-37.pyc
+│   │   │   └── zip_builder.cpython-37.pyc
+│   │   ├── scan.py
+│   │   └── zip_builder.py
+│   ├── dev_extensions
+│   │   ├── __init__.py
+│   │   └── tools.py
+│   ├── __init__.py
+│   ├── openapi.py
+│   ├── __pycache__
+│   │   ├── app.cpython-37.pyc
+│   │   ├── __init__.cpython-37.pyc
+│   │   └── openapi.cpython-37.pyc
+│   ├── static
+│   │   └── dist
+│   │       ├── css
+│   │       │   ├── app.7fb8c964.css
+│   │       │   ├── chunk-vendors.2af88c15.css
+│   │       │   └── imjoy.a217f085.css
+│   │       ├── favicon-16x16.png
+│   │       ├── favicon-32x32.png
+│   │       ├── favicon.ico
+│   │       ├── fonts
+│   │       │   ├── MaterialIcons-Regular.012cf6a1.woff
+│   │       │   ├── MaterialIcons-Regular.570eb838.woff2
+│   │       │   ├── MaterialIcons-Regular.a37b0c01.ttf
+│   │       │   └── MaterialIcons-Regular.e79bfd88.eot
+│   │       ├── index.html
+│   │       ├── js
+│   │       │   ├── app.9cf20d05.js
+│   │       │   ├── app.9cf20d05.js.map
+│   │       │   ├── chunk-vendors.7155a137.js
+│   │       │   ├── chunk-vendors.7155a137.js.map
+│   │       │   ├── imjoy.1cb08970.js
+│   │       │   └── imjoy.1cb08970.js.map
+│   │       ├── ListServices.imjoy.html
+│   │       ├── OpenFlexureScriptEditor.imjoy.html
+│   │       ├── OpenFlexureSnapImageTemplate.imjoy.html
+│   │       ├── OpenFlexureTestMoveStage.imjoy.html
+│   │       └── titleicon.svg
+│   ├── utilities
+│   │   ├── gui.py
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   │       ├── gui.cpython-37.pyc
+│   │       └── __init__.cpython-37.pyc
+│   └── v2
+│       ├── __init__.py
+│       ├── __pycache__
+│       │   └── __init__.cpython-37.pyc
+│       └── views
+│           ├── actions
+│           │   ├── camera.py
+│           │   ├── __init__.py
+│           │   ├── __pycache__
+│           │   │   ├── camera.cpython-37.pyc
+│           │   │   ├── __init__.cpython-37.pyc
+│           │   │   ├── stage.cpython-37.pyc
+│           │   │   └── system.cpython-37.pyc
+│           │   ├── stage.py
+│           │   └── system.py
+│           ├── camera.py
+│           ├── captures.py
+│           ├── __init__.py
+│           ├── instrument.py
+│           ├── __pycache__
+│           │   ├── camera.cpython-37.pyc
+│           │   ├── captures.cpython-37.pyc
+│           │   ├── __init__.cpython-37.pyc
+│           │   ├── instrument.cpython-37.pyc
+│           │   ├── stage.cpython-37.pyc
+│           │   └── streams.cpython-37.pyc
+│           ├── stage.py
+│           └── streams.py
+├── camera
+│   ├── base.py
+│   ├── __init__.py
+│   ├── mock.py
+│   ├── pi.py
+│   ├── __pycache__
+│   │   ├── base.cpython-37.pyc
+│   │   ├── __init__.cpython-37.pyc
+│   │   ├── mock.cpython-37.pyc
+│   │   ├── pi.cpython-37.pyc
+│   │   └── set_picamera_gain.cpython-37.pyc
+│   └── set_picamera_gain.py
+├── captures
+│   ├── capture_manager.py
+│   ├── capture.py
+│   ├── __init__.py
+│   └── __pycache__
+│       ├── capture.cpython-37.pyc
+│       ├── capture_manager.cpython-37.pyc
+│       └── __init__.cpython-37.pyc
+├── config.py
+├── devel
+│   ├── __init__.py
+│   └── __pycache__
+│       └── __init__.cpython-37.pyc
+├── __init__.py
+├── json.py
+├── microscope.py
+├── paths.py
+├── __pycache__
+│   ├── config.cpython-37.pyc
+│   ├── __init__.cpython-37.pyc
+│   ├── json.cpython-37.pyc
+│   ├── microscope.cpython-37.pyc
+│   ├── paths.cpython-37.pyc
+│   └── utilities.cpython-37.pyc
+├── rescue
+│   ├── auto.py
+│   ├── check_capture_reload.py
+│   ├── check_picamera.py
+│   ├── check_sangaboard.py
+│   ├── check_settings.py
+│   ├── check_system.py
+│   ├── error_sources.py
+│   ├── __init__.py
+│   ├── monitor_service.py
+│   └── monitor_timeout.py
+├── stage
+│   ├── base.py
+│   ├── __init__.py
+│   ├── mock.py
+│   ├── __pycache__
+│   │   ├── base.cpython-37.pyc
+│   │   ├── __init__.cpython-37.pyc
+│   │   ├── mock.cpython-37.pyc
+│   │   ├── sangaboardpi.cpython-37.pyc
+│   │   ├── sanga.cpython-37.pyc
+│   │   ├── sangapi.cpython-37.pyc
+│   │   └── stepperpi.cpython-37.pyc
+│   ├── sangaboardpiconfig.json
+│   ├── sangaboardpi.py
+│   ├── sangapi.py
+│   ├── sanga.py
+│   └── stepperpi.py
+├── tests
+│   ├── __pycache__
+│   │   ├── test_SangaStagePi.cpython-37-pytest-6.2.4.pyc
+│   │   └── test_StepperPi.cpython-37-pytest-6.2.4.pyc
+│   ├── test_SangaStagePi.py
+│   └── test_StepperPi.py
+├── tree.txt
+└── utilities.py
+
+32 directories, 134 files

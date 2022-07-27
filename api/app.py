@@ -24,7 +24,7 @@ import os
 from datetime import datetime
 
 import pkg_resources
-from flask import abort, send_file
+from flask import abort, send_file, request
 from flask_cors import CORS, cross_origin
 from labthings import create_app
 from labthings.extensions import find_extensions
@@ -97,15 +97,15 @@ logging.debug("Microscope successfully attached!")
 logging.info("Creating app")
 app, labthing = create_app(
 
-#    __name__, openflexure_microscope.api.app wasn't resolving....
+    __name__,
 
-    "/var/openflexure/application/openflexure-microscope-server/openflexure_microscope/api/app",
+    #name = "/var/openflexure/application/openflexure-microscope-server/openflexure_microscope/api/app",
     prefix="/api/v2",
     title=f"OpenFlexure Microscope {api_microscope.name}",
     description="Test LabThing-based API for OpenFlexure Microscope",
     types=["org.openflexure.microscope"],
     version=pkg_resources.get_distribution("openflexure-microscope-server").version,
-    flask_kwargs={ "static_folder": "/var/openflexure/application/openflexure-microscope-server/openflexure_microscope/api/static/dist"},
+    flask_kwargs= {"static_url_path":'', "static_folder": "/var/openflexure/application/openflexure-microscope-server/openflexure_microscope/api/static/dist"},
 )
 
 # Enable CORS for some routes outside of LabThings
@@ -179,6 +179,10 @@ class LogFileView(View):
 
 labthing.add_view(LogFileView, "/log")
 
+@app.errorhandler(404)
+def handle_exception(err):
+    err_msg = f"Error on path {err}"
+    logging.error(err_msg)
 
 @app.route("/")
 def openflexure_ev():

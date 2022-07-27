@@ -60,24 +60,34 @@ class SangaboardPi(Stepper):
     def move_rel(self,displacement,axis=None):
         pass
 
+
+
     def move_rel(self, displacement, axis=None):
         """Make a relative move.
 
         displacement: integer or array/list of 3 integers
         axis: None (for 3-axis moves) or one of 'x','y','z'
         """
-        
+        def _get_index(self,axis):
+            if axis is 'x':
+                return 0
+            elif axis is 'y':
+                return 1
+            elif axis is 'z':
+                return 2
         if axis is not None:
             assert axis in self.axis_names, "axis must be one of {}".format(
                 self.axis_names
             )
-            self.query("mr{} {}".format(axis, int(displacement)))
+            index = _get_index(axis)
+            self.motors[index].step(displacement[index])
+            # self.query("mr{} {}".format(axis, int(displacement)))
         else:
             # TODO: assert displacement is 3 integers
-            self.query("mr {} {} {}".format(*list(displacement)))
-    def position(self):
-        # TODO
-        pass
+            self.motors[0].step(displacement[0])
+            self.motors[1].step(displacement[1])
+            self.motors[2].step(displacement[2])
+            # self.query("mr {} {} {}".format(*list(displacement)))
 
     def mrx(self, n_steps):
         self._move_axis(0 ,n_steps)
@@ -116,11 +126,11 @@ class SangaboardPi(Stepper):
 
     def close(self):
         # Not using a serial interface. No port to close.
-        pass
 
+        pass
+    @property
     def position(self):
-        print(f" {self.current_position[0]} {self.current_position[1]} {self.curret_position[3]}")
-        return
+        return [self.current_position[0], self.current_position[1], self.current_position[2]]
 
     def get_min_step_delay(self):
         return self._min_step_delay

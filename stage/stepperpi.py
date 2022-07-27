@@ -1,5 +1,5 @@
 import atexit
-import datetime
+import time
 import RPi.GPIO as GPIO
 
 class Stepper:
@@ -29,32 +29,59 @@ class Stepper:
 
     def firmware(self):
         return "0.0"
-
+    
         
     def step(self,steps_to_move):
         '''Move the motor 1 half step.  there are 8 half steps in one gear rotation.
-        '''
+        (MJ added for sanity reasons...)
         
+        One gear rotation moves 5.625 degrees.  The stepper motor is down geared by 64,
+        i.e.: there is a 64:1 gear ratio so 360 degrees / (5.625/64) = 4096 total steps (or pulses)
+        turns the stepper 360 degrees.  By pulse, I mean sending a digitalwrite(1) to one or two of the
+        wires.
+
+        So say I want to move the stage 7 steps_two_move (which perhaps would be better named half-steps).
+        Notice the point about 8 half steps.  These refer to the step_sequences below.  The 7 half-steps then 
+        doesn't make a gear rotation only an 1/8 step of a rotation....such fun....
+        '''
+        fWaitTime = 8/float(1000)
         steps_left = abs(steps_to_move)
         self.direction = 1 if steps_to_move > 0 else 0
-        time_since_last = 0
-        while (steps_left>0):
-            now = datetime.datetime.now().microsecond
-            time_since_last = now + self.last_step_time if (now < self.last_step_time) else now - self.last_step_time
-            # move only if the appropriate delay has passed
-            if time_since_last >= self.step_delay:
-                # get the timestamp of when the step is taken
-                self.last_step_time = now
-                if (self.direction == 1):
-                    self.step_number += 1
-                    if self.step_number == self.number_of_steps:
-                        self.step_number = 0
-                else:
-                    if self.step_number == 0:
-                        self.step_number = self.number_of_steps
-                # Decrement the steps left.
-                steps_left -= 1
-                self.stepMotor(self.step_number % 8)
+        # Given the imprecise nature of the stepper motor, I chose to simplify here.  It wasn't working well
+        # the way it was...
+        while (steps_left > 0):
+            if (self.direction == 1):
+                 self.step_number += 1
+                 if self.step_number == self.number_of_steps:
+                    self.step_number = 0
+            else:
+                if self.step_number == 0:
+                    self.step_number = self.number_of_steps
+                self.step_number -= 1
+            steps_left -=1
+            # Get to the right step sequence -  which as you can see the input for the step sequence 
+            # (self.number_of_steps) is initiatied to 0 in __init__...
+            self.stepMotor(self.step_number % 8)
+            time.sleep(fWaitTime)
+
+        # time_since_last = 0
+        # while (steps_left>0):
+        #     now = datetime.datetime.now().microsecond
+        #     time_since_last = now + self.last_step_time if (now < self.last_step_time) else now - self.last_step_time
+        #     # move only if the appropriate delay has passed
+        #     if time_since_last >= self.step_delay:
+        #         # get the timestamp of when the step is taken
+        #         self.last_step_time = now
+        #         if (self.direction == 1):
+        #             self.step_number += 1
+        #             if self.step_number == self.number_of_steps:
+        #                 self.step_number = 0
+        #         else:
+        #             if self.step_number == 0:
+        #                 self.step_number = self.number_of_steps
+        #         # Decrement the steps left.
+        #         steps_left -= 1
+        #         self.stepMotor(self.step_number % 8)
         return
 
 

@@ -37,6 +37,10 @@ def test_x_set_speed(xStepper):
     xStepper.setSpeed(15)
     assert xStepper.step_delay == step_delay_at_15RPM
 
+def test_x_steps(xStepper):
+    print('Testing taking 180 steps.')
+    xStepper.step(180)
+
 def test_x_one_rotation(xStepper,fWaitTime):
     print('Testing X rotation - watch for a full rotation of the x-axis motor.')
     for i in range(4096):
